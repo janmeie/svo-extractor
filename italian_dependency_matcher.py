@@ -15,7 +15,7 @@ def get_extension(doc, head_id):
     the found compound together with their head or simply None if nothing is found.
 
     :param doc: the entire text to be analysed
-    :param head_id: either the noun (subj or obj) which the compound word depends on
+    :param head_id: the noun (subj or obj) which the compound word depends on
 
     :input: 1
     :return: [0, 1]
