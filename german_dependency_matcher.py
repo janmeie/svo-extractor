@@ -11,13 +11,13 @@ def get_extension(doc, head_id, dependency):
     """Gets compound words and particles of phrasal verbs.
 
     All subjects and objects are checked for compound words such as names (e.g. Lisa Maria Müller) and all verbs are
-    checked for particles so that phrasal verbs can be detected (e.g. aufstehen --> er steht auf). The input is the
-    index of the  noun or verb, which is the head of a compound words resp. of a particle. The output is either a list
+    checked for particles so that particle verbs can be detected (e.g. aufstehen --> er steht auf). The input is the
+    index of the noun or verb, which is the head of a compound words resp. of a particle. The output is either a list
     with the index of the found compound/particle together with their head or simply None if nothing is found.
 
     :param doc: the entire text to analyse
     :param head_id: either the noun (subj or obj) or the verb which the compound word or the particle depends on
-    :param dependency: either "compound" or "prt"
+    :param dependency: either "pnc" or "svp"
 
     :input: 1
     :return: [0, 1]
@@ -274,7 +274,6 @@ def update_svo_triplets_from_sentence(nlp, doc):
     def elliptical_match(matcher, doc, id, matches):
         """Callback function to act on matches. In this case on elliptical subject.
 
-        example: 'Ataselim organises rallies, Ø lobbies politicians and Ø provides support for victims.'
         :param matcher: Dependency Matcher.
         :param doc: The entire document to be analysed.
         :param id: The ID of the particular pattern.
