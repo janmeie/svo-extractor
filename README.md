@@ -37,9 +37,13 @@ The output contains a dictionary with the name of the pattern and the indexes of
     
 Additionally, a compressed jsonl file is created with further information about the text. Each line represents one newspaper article containing the extracted SVO triplets. Here an example of an output of the sentence *Turkish civil society faces a climate of repression under President Recep Tayyip Erdoğan’s conservative government* :
 
-    {"svo_triplets": [{"pattern_name": "SVO", "S": 2, "V": 3, "O": 5, "S_token": "society", "S_lemma": "society", "S_pos": "NOUN", "V_token": "faces",              "V_lemma": "face", "V_pos": "VERB", "O_token": "climate", "O_lemma": "climate", "O_pos": "NOUN"}], "meta_data": [], "legth_text": 17, "nr_verbs": 1, "unique_triplets": ["society_face_climate"], "nr_unique_triplets": 1}
+    {"svo_triplets": [{"pattern_name": "SVO", "S": 2, "V": 3, "O": 5, "S_token": "society", "S_lemma": "society", "S_pos": "NOUN", "V_token": "faces", "V_lemma": "face", "V_pos": "VERB", "O_token": "climate", "O_lemma": "climate", "O_pos": "NOUN"}], "meta_data": [], "legth_text": 17, "nr_verbs": 1, "unique_triplets": ["society_face_climate"], "nr_unique_triplets": 1}
     
 Note that meta_data is only filled out when applied on the dataframe from Nexis DataLab.
+
+To decompress the jsonl file, use this command:
+
+        bzip2 -d file_name.jsonl.bz2
 
 
 Additional arguments can be used:
