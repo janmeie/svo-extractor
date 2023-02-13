@@ -2,7 +2,8 @@
 
 ## 1. Description
 
-This repository contains an extractor used to extract morpho-syntactic patterns for semantic information retrieval. The extractor was applied on newspaper articles.
+This repository contains an extractor used to extract morpho-syntactic patterns for semantic information retrieval. 
+The extractor was applied on newspaper articles.
 
 Franzosi proposes that narrative texts - that is, newspaper articles - are characterized
 by a sequence of events in which there is an actor (primarily human) who does
@@ -15,19 +16,43 @@ in relation to a second actor or object, relying on the idea of SVO triplets
 as a narrative unit proposed by Franzosi. However, languages have more complex
 ways of expressing that someone does something in relation to someone or something else; 
 SVO triplets are a simplification. As part of this work, I examined newspaper articles 
-and pick out all possible patterns that could express this information. In a second step, 
-I examined which patterns can be extracted with spaCy's Dependency Matcher.
+and picked out all possible patterns that express this information. As I perform the extraction with
+spaCy's Dependency Matcher, I had to accept the limitations of spaCy's parser.
 
-## 2. Usage
+## 2. Patterns
+
+Some of the defined patterns are language-specific, while others are parser-specific. The basic SVO pattern (Maria eats an apple), the passive SVO pattern
+(The apple was eaten by Maria), and the elliptical subject pattern (Maria eats an apple and Ø drinks tea) occur in all languages, but the parser is not 
+precise enough in all languages to recognize these patterns. 
+
+The pattern of the deletion of the relative pronoun (The apple Ø he ate was delicious) is specific to English, it does not occur in the other analysed languages. 
+
+German requires an additional pattern to detect SVO triplets that are accompanied by an auxiliary verb. The parser for the other languages correctly extracts the subject and direct object of the full verb. The parser for German, on the other hand, links the subject as a child of the auxiliary verb and the direct object as a child of the full verb. Therefore, the additional pattern auxiliary verb is required to capture sentences in which an auxiliary verb is used and to be in line with the other languages. During the analysis, some sentences were found in which the verb “haben” (*to have*) was erroneously tagged as an auxiliary verb where it has the function of a full verb. As in English, the German verb for *to have* can serve both functions. To avoid such errors, the pattern full verb tagged as an auxiliary verb was created. 
+
+The reason why there are more patterns in English than in the other languages is that the parser for English is more precise. In the other languages and also in English, more patterns are available, but their parser is not able to extract them consistently. Spanish and Italian, for example, like most Romance languages, are so called null-subject languages, that is, languages in which the subject pronoun is used only when stressed (""). Unfortunately, I could not find a way to extract SVO triplets where the subject is not stated, as this would also extract non-finite sentences ("para descubrir la fuente", to discover the
+source). 
+
+
+## 3. Setup
+
+for the English medium pipeline:
+
+    $ python -m spacy download en_core_web_md
+    
+for the French, Spanish, Italian or German small or medium pipeline:
+
+    $ python -m spacy download {fr,es,it,de}_core_news_{sm,md}
+
+## 4. Usage
 
 In order to get the SVO triplets from a text, the following input is required with the obligatory arguments input file (txt file) and a language (en, fr, es, it, de): 
 
-    python main.py input_file.txt language
+    $ python main.py input_file.txt language
 
 
 An example is the following:
 
-    python main.py international_womens_day.txt en
+    $ python main.py international_womens_day.txt en
 
 The output contains a dictionary with the name of the pattern and the indexes of the subject, verb and object in the text. 
     
@@ -42,7 +67,7 @@ Note that meta_data is only filled out when applied on the dataframe from Nexis 
 
 To decompress the jsonl file, use this command:
 
-    bzip2 -d file_name.jsonl.bz2
+    $ bzip2 -d file_name.jsonl.bz2
 
 
 Additional arguments can be used:
@@ -73,9 +98,9 @@ Additional arguments can be used:
 
 
 
-## 3. Data
+## 5. Data
 
-## 4. Background
+## 6. Background
 
 My master’s thesis is related to the postdoctoral project of Dr. Elena Fernández
 Fernández. Her project quantifies Reinhart Koselleck’s theory (The Practice of
@@ -105,7 +130,7 @@ The goal of this project is to investigate geographically information behaviour
 as a result of processes of globalisation in the Western world by analysing social
 acceleration in newspapers.
 
-## 5. Reference
+## 7. Reference
 
 E. F. Fernández, M. Schoenfeld, and J. Pfeffer. Measuring the acceleration of the
 social construction of time using the BOE (Boletín Oficial del Estado). In CHR
