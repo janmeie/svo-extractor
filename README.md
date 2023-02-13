@@ -43,7 +43,7 @@ Note that meta_data is only filled out when applied on the dataframe from Nexis 
 
 To decompress the jsonl file, use this command:
 
-        bzip2 -d file_name.jsonl.bz2
+    bzip2 -d file_name.jsonl.bz2
 
 
 Additional arguments can be used:
