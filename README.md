@@ -21,6 +21,54 @@ and pick out all possible patterns that could express this information.
 
 ## 2. Usage
 
+In order to get the SVO triplets from a text, the following input is required with the obligatory arguments input file (txt file) and a language (en, fr, es, it, de): 
+
+    python main.py input_file.txt language
+
+
+An example is the following:
+
+    python main.py international_womens_day.txt en
+
+The output contains a dictionary with the name of the pattern and the indexes of the subject, verb and object in the text. 
+    
+    {'pattern_name': 'SVO', 'S': 2, 'V': 3, 'O': 5}
+    {'pattern_name': 'SVO', 'S': 19, 'V': 20, 'O': 22}
+    
+Additionally, a compressed jsonl file is created with further information about the text. Each line represents one newspaper article containing the extracted SVO triplets. Here an example of an output of the sentence *Turkish civil society faces a climate of repression under President Recep Tayyip Erdoğan’s conservative government* :
+
+    {"svo_triplets": [{"pattern_name": "SVO", "S": 2, "V": 3, "O": 5, "S_token": "society", "S_lemma": "society", "S_pos": "NOUN", "V_token": "faces",              "V_lemma": "face", "V_pos": "VERB", "O_token": "climate", "O_lemma": "climate", "O_pos": "NOUN"}], "meta_data": [], "legth_text": 17, "nr_verbs": 1, "unique_triplets": ["society_face_climate"], "nr_unique_triplets": 1}
+    
+Note that meta_data is only filled out when applied on the dataframe from Nexis DataLab.
+
+
+Additional arguments can be used:
+
+- input format: either an individual text (indtxt) or a dataframe (datafr), default is individual text
+
+      --input_format datafr
+    
+- spaCy language pipeline size: either small (sm) or medium (md), default is small
+
+      --pipeline md
+      
+- unique triplets: if present, prints the unique lemmas of all the triplets found in the text
+
+      --unique_triplets
+      
+- number of unique triplets: if presents, prints the number of unique triplets found in the text
+
+      --nr_unique_triplets
+      
+- print: if present, prints the svo dictionary to the std output
+
+      --print, -p
+     
+- output file: name of the output file, default is "svo_triplets_output.jsonl.bz2"
+
+      --output_file filename
+
+
 
 ## 3. Data
 
@@ -55,3 +103,10 @@ as a result of processes of globalisation in the Western world by analysing soci
 acceleration in newspapers.
 
 ## 5. Reference
+
+E. F. Fernández, M. Schoenfeld, and J. Pfeffer. Measuring the acceleration of the
+social construction of time using the BOE (Boletín Oficial del Estado). In CHR
+2020: Workshop on Computational Humanities Research, Amsterdam, The
+Netherlands, Nov 2020. URL https://ceur-ws.org/Vol-2723/.
+
+R. Franzosi. Quantitative Narrative Analysis. Sage, 2010.
