@@ -2,22 +2,21 @@
 
 ## 1. Description
 
-The goal of my master's thesis is the efficient extraction of morpho-syntactic structures 
-from newspaper articles for semantic information retrieval. 
+This repository contains an extractor used to extract morpho-syntactic patterns for semantic information retrieval. The extractor was applied on newspaper articles.
 
 Franzosi proposes that narrative texts - that is, newspaper articles - are characterized
 by a sequence of events in which there is an actor (primarily human) who does
 certain things in relation to other actors. This so-called actor-action-actor structure
 corresponds linguistically to a subject, i.e. the first actor, a temporally contextualized
-verb, i.e. the action, and a syntactic complement or object, i.e. the second actor.
+verb, i.e. the action, and a syntactic complement or object, i.e. the second actor (Franzosi, 2010).
 
 My work focuses on obtaining the information that an actor performs a certain action
-in relation to a second actor or object. The plan is to rely on the idea of SVO triplets 
-as a narrative unit proposed by Franzosi. However, languages have much more complicated 
+in relation to a second actor or object, relying on the idea of SVO triplets 
+as a narrative unit proposed by Franzosi. However, languages have more complex
 ways of expressing that someone does something in relation to someone or something else; 
-SVO triplets are a simplification. As part of this work, I examine newspaper articles 
-and pick out all possible patterns that could express this information.  
-
+SVO triplets are a simplification. As part of this work, I examined newspaper articles 
+and pick out all possible patterns that could express this information. In a second step, 
+I examined which patterns can be extracted with spaCy's Dependency Matcher.
 
 ## 2. Usage
 
