@@ -96,11 +96,7 @@ Additional arguments can be used:
 
       --output_file filename
 
-
-
-## 5. Data
-
-## 6. Background
+## 5. Background
 
 My master’s thesis is related to the postdoctoral project of Dr. Elena Fernández
 Fernández. Her project quantifies Reinhart Koselleck’s theory (The Practice of
@@ -130,7 +126,7 @@ The goal of this project is to investigate geographically information behaviour
 as a result of processes of globalisation in the Western world by analysing social
 acceleration in newspapers.
 
-## 7. Reference
+## 6. Reference
 
 E. F. Fernández, M. Schoenfeld, and J. Pfeffer. Measuring the acceleration of the
 social construction of time using the BOE (Boletín Oficial del Estado). In CHR
